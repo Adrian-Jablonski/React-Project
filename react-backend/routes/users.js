@@ -1,9 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
 
-/* GET users listing. */
+var myDatabase = require('../util/database.js');
+
+var db = myDatabase.database;
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  db.any(`SELECT * FROM userinfo`).then(function (userData) {
+        res.json(userData);
+        console.log(userData);
+    })
 });
 
 module.exports = router;
