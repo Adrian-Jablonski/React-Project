@@ -4,11 +4,7 @@ import UserItem from './UserItem';
 
 class Users extends Component {
     render() {
-        // var personList = [];
-        // var i = 0;
         var person = this.props.users.map(user =>{
-            // personList[i] = user;
-            // i += 1
             console.log(user);
             return (
                 <UserItem user = {user} />

@@ -1,0 +1,356 @@
+[
+ {
+   "id": "#",
+   "category": "Category",
+   "subcategory": "Subcategory",
+   "type": "Type"
+ },
+ {
+   "id": "1",
+   "category": "Entertainment",
+   "subcategory": "Arts",
+   "type": ""
+ },
+ {
+   "id": "2",
+   "category": "Entertainment",
+   "subcategory": "Music",
+   "type": ""
+ },
+ {
+   "id": "3",
+   "category": "Entertainment",
+   "subcategory": "Movies",
+   "type": ""
+ },
+ {
+   "id": "4",
+   "category": "Education",
+   "subcategory": "Tuition",
+   "type": ""
+ },
+ {
+   "id": "5",
+   "category": "Education",
+   "subcategory": "Student Loan",
+   "type": ""
+ },
+ {
+   "id": "6",
+   "category": "Education",
+   "subcategory": "Books & Supplies",
+   "type": ""
+ },
+ {
+   "id": "7",
+   "category": "Shopping",
+   "subcategory": "Clothing",
+   "type": ""
+ },
+ {
+   "id": "8",
+   "category": "Shopping",
+   "subcategory": "Books & Supplies",
+   "type": ""
+ },
+ {
+   "id": "9",
+   "category": "Shopping",
+   "subcategory": "Electronics & Software",
+   "type": ""
+ },
+ {
+   "id": "10",
+   "category": "Shopping",
+   "subcategory": "Hobbies",
+   "type": ""
+ },
+ {
+   "id": "11",
+   "category": "Shopping",
+   "subcategory": "Sporting Goods",
+   "type": ""
+ },
+ {
+   "id": "12",
+   "category": "Personal Care",
+   "subcategory": "Laundry",
+   "type": ""
+ },
+ {
+   "id": "13",
+   "category": "Personal Care",
+   "subcategory": "Hair",
+   "type": ""
+ },
+ {
+   "id": "14",
+   "category": "Personal Care",
+   "subcategory": "Spa & Massage",
+   "type": ""
+ },
+ {
+   "id": "15",
+   "category": "Health & Fitness",
+   "subcategory": "Dentist",
+   "type": ""
+ },
+ {
+   "id": "16",
+   "category": "Health & Fitness",
+   "subcategory": "Doctor",
+   "type": ""
+ },
+ {
+   "id": "17",
+   "category": "Health & Fitness",
+   "subcategory": "Eye care",
+   "type": ""
+ },
+ {
+   "id": "18",
+   "category": "Health & Fitness",
+   "subcategory": "Pharmacy",
+   "type": ""
+ },
+ {
+   "id": "19",
+   "category": "Health & Fitness",
+   "subcategory": "Health Insurance",
+   "type": ""
+ },
+ {
+   "id": "20",
+   "category": "Health & Fitness",
+   "subcategory": "Gym",
+   "type": ""
+ },
+ {
+   "id": "21",
+   "category": "Health & Fitness",
+   "subcategory": "Sports",
+   "type": ""
+ },
+ {
+   "id": "22",
+   "category": "Kids",
+   "subcategory": "Activities",
+   "type": ""
+ },
+ {
+   "id": "23",
+   "category": "Kids",
+   "subcategory": "Allowance",
+   "type": ""
+ },
+ {
+   "id": "24",
+   "category": "Kids",
+   "subcategory": "Baby Supplies",
+   "type": ""
+ },
+ {
+   "id": "25",
+   "category": "Kids",
+   "subcategory": "Babysitter & Daycare",
+   "type": ""
+ },
+ {
+   "id": "26",
+   "category": "Kids",
+   "subcategory": "Child Support",
+   "type": ""
+ },
+ {
+   "id": "27",
+   "category": "Kids",
+   "subcategory": "Toys",
+   "type": ""
+ },
+ {
+   "id": "28",
+   "category": "Food & Dining",
+   "subcategory": "Groceries",
+   "type": ""
+ },
+ {
+   "id": "29",
+   "category": "Food & Dining",
+   "subcategory": "Coffee shops",
+   "type": ""
+ },
+ {
+   "id": "30",
+   "category": "Food & Dining",
+   "subcategory": "Fast Food",
+   "type": ""
+ },
+ {
+   "id": "31",
+   "category": "Food & Dining",
+   "subcategory": "Restaurants",
+   "type": ""
+ },
+ {
+   "id": "32",
+   "category": "Food & Dining",
+   "subcategory": "Alcohol",
+   "type": ""
+ },
+ {
+   "id": "33",
+   "category": "Gifts & Donations",
+   "subcategory": "Gift",
+   "type": ""
+ },
+ {
+   "id": "34",
+   "category": "Gifts & Donations",
+   "subcategory": "Charity",
+   "type": ""
+ },
+ {
+   "id": "35",
+   "category": "Bills & Utilities",
+   "subcategory": "TV",
+   "type": ""
+ },
+ {
+   "id": "36",
+   "category": "Bills & Utilities",
+   "subcategory": "Home Phone",
+   "type": ""
+ },
+ {
+   "id": "37",
+   "category": "Bills & Utilities",
+   "subcategory": "Internet",
+   "type": ""
+ },
+ {
+   "id": "38",
+   "category": "Bills & Utilities",
+   "subcategory": "Cell Phone",
+   "type": ""
+ },
+ {
+   "id": "39",
+   "category": "Bills & Utilities",
+   "subcategory": "Gas",
+   "type": ""
+ },
+ {
+   "id": "40",
+   "category": "Bills & Utilities",
+   "subcategory": "Electric",
+   "type": ""
+ },
+ {
+   "id": "41",
+   "category": "Bills & Utilities",
+   "subcategory": "Water",
+   "type": ""
+ },
+ {
+   "id": "42",
+   "category": "Bills & Utilities",
+   "subcategory": "Rent",
+   "type": ""
+ },
+ {
+   "id": "43",
+   "category": "Auto",
+   "subcategory": "Gas",
+   "type": ""
+ },
+ {
+   "id": "44",
+   "category": "Auto",
+   "subcategory": "Parking",
+   "type": ""
+ },
+ {
+   "id": "45",
+   "category": "Auto",
+   "subcategory": "Service & Auto Parts",
+   "type": ""
+ },
+ {
+   "id": "46",
+   "category": "Auto",
+   "subcategory": "Auto Payment",
+   "type": ""
+ },
+ {
+   "id": "47",
+   "category": "Auto",
+   "subcategory": "Auto Insurance",
+   "type": ""
+ },
+ {
+   "id": "48",
+   "category": "Fees & Charges",
+   "subcategory": "Service Fee",
+   "type": ""
+ },
+ {
+   "id": "49",
+   "category": "Fees & Charges",
+   "subcategory": "Late Fee",
+   "type": ""
+ },
+ {
+   "id": "50",
+   "category": "Fees & Charges",
+   "subcategory": "Finance Charge",
+   "type": ""
+ },
+ {
+   "id": "51",
+   "category": "Fees & Charges",
+   "subcategory": "ATM Fee",
+   "type": ""
+ },
+ {
+   "id": "52",
+   "category": "Fees & Charges",
+   "subcategory": "Bank Fee",
+   "type": ""
+ },
+ {
+   "id": "53",
+   "category": "Fees & Charges",
+   "subcategory": "Commissions",
+   "type": ""
+ },
+ {
+   "id": "54",
+   "category": "Taxes",
+   "subcategory": "Federal Tax",
+   "type": ""
+ },
+ {
+   "id": "55",
+   "category": "Taxes",
+   "subcategory": "State Tax",
+   "type": ""
+ },
+ {
+   "id": "56",
+   "category": "Taxes",
+   "subcategory": "Local Tax",
+   "type": ""
+ },
+ {
+   "id": "57",
+   "category": "Taxes",
+   "subcategory": "Sales Tax",
+   "type": ""
+ },
+ {
+   "id": "58",
+   "category": "Taxes",
+   "subcategory": "Property Tax",
+   "type": ""
+ }
+]
