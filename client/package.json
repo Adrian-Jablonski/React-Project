@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "react": "^16.3.2",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.3.2",
+    "react-input-mask": "^1.2.2",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './styles/styles.css';
+import { Grid, Row, Col } from 'react-bootstrap';
+import InputMask from 'react-input-mask';
 
 class EditExpenses extends Component {
   state = {newExpense:[]};
@@ -24,7 +27,8 @@ class EditExpenses extends Component {
             category: this.refs.category.value,
             subcategory: this.refs.subcategory.value,
             amount: this.refs.amount.value,
-            type: this.refs.type.value
+            type: this.refs.type.value,
+            expdate: this.refs.expdate.value
             // Retrieves user input from form
         })
         .then(function(response) {
@@ -57,27 +61,70 @@ class EditExpenses extends Component {
       return <option key={subcategory["subcategory"]} value={subcategory["subcategory"]}> {subcategory["subcategory"]} </option>
     });
 
+    let now = new Date();
+    let day = now.getDate();
+    let month = now.getMonth() + 1;
+    let year = now.getFullYear();
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+    if (month < 10) {
+      month = '0' + month
+    }
+
+    let currentDate = month + "/" + day + "/" + year;
+
     return (
       <div>
         <h1>Add Expenses</h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <div>
-            <label>Category: </label>
-            <select onChange={this.categoryChange.bind(this)} ref="category" name="category">{expCategory}</select>
-
+        <div>
+            <Grid>
+              <Row className ="show-grid">
+                <Col xs={3}><label className="expenseLabel">Date: </label></Col>
+                <Col xs={9}><InputMask mask="99/99/9999" value="currentDate" ref="expdate" name="expdate" value={currentDate}/></Col>
+              </Row>
+            </Grid>
           </div>
           <div>
-            <label>Sub Category </label>
-            {/* <input type="text" ref="subcategory" name="subcategory" /> */}
-            <select ref="subcategory" name="subcategory">{expSubcategory}</select>
+            <Grid>
+              <Row className ="show-grid">
+                <Col xs={3}><label className="expenseLabel">Category: </label></Col>
+                <Col xs={9}><select onChange={this.categoryChange.bind(this)} ref="category" name="category">{expCategory}</select></Col>
+              </Row>
+            </Grid>
           </div>
           <div>
-            <label>Amount</label>
-            <input type="text" ref="amount" name="amount" />
+            <Grid>
+                <Row className ="show-grid">
+                  <Col xs={3}><label className="expenseLabel">Sub Category </label> </Col>
+                  {/* <input type="text" ref="subcategory" name="subcategory" /> */}
+                  <Col xs={9}><select ref="subcategory" name="subcategory">{expSubcategory}</select> </Col>
+                </Row>
+              </Grid>
           </div>
           <div>
-            <label>Payment Type: </label>
-            <input type="text" ref="type" name="type" />
+              <Grid>
+                <Row className ="show-grid">
+                  <Col xs={3}><label className="expenseLabel">Payment Type: </label> </Col>
+                  <Col xs={9}><select ref="type" name="type">
+                    <option key="cash" value="Cash">Cash</option>
+                    <option key="creditcard" value="Credit Card">Credit Card</option>
+                    <option key="check" value="Check">Check</option>
+                  </select> </Col>
+                  {/* <Col xs={9}><input type="text" ref="type" name="type" /> </Col> */}
+                </Row>
+              </Grid>
+          </div>
+          <div>
+              <Grid>
+                <Row className ="show-grid">
+                  <Col xs={3}><label className="expenseLabel">Amount $</label> </Col>
+                  {/* <input type="text" ref="subcategory" name="subcategory" /> */}
+                  <Col xs={9}><input type="text" ref="amount" name="amount" /></Col>
+                </Row>
+              </Grid>
           </div>
           <input type="submit" value="Add Expense" />
         </form>

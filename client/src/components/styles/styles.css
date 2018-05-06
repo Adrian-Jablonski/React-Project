@@ -1,0 +1,7 @@
+.expenseLabel {
+    margin-bottom: 10px;
+}
+
+select, input {
+    width: 150px;
+}

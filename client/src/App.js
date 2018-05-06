@@ -35,7 +35,9 @@ class App extends Component {
     this.getUsers();
   }
 
-
+  // componentDidUpdate() {
+  //   this.getSubcategories();
+  // }
 
   render() {
     return (
