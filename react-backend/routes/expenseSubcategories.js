@@ -6,15 +6,9 @@ var myDatabase = require('../util/database.js');
 
 var db = myDatabase.database;
 
-// router.get('/', function(req, res, next) {
-//     db.any(`SELECT subcategory FROM expensecategories GROUP BY subcategory ORDER BY subcategory`).then(function (subcategoryData) {
-//           res.json(subcategoryData);
-//           console.log(subcategoryData);
-//       })
-//   });
-
-  router.get('/', function(req, res, next) {
-    var category = req.body.category;
+  router.get('/expenseSubcategories/:category', function(req, res, next) {
+    var category = req.params.category;
+    console.log("Get Param:", category)
     // category = "Auto"
     db.any(`SELECT subcategory FROM expensecategories WHERE category = $1 GROUP BY subcategory, category ORDER BY subcategory`,[category]).then(function (subcategoryData) {
         res.json(subcategoryData);
@@ -22,9 +16,10 @@ var db = myDatabase.database;
     })
 });
 
-router.post('/', function(req, res, next) {
-    var category = req.body.category;
+router.post('/expenseSubcategories/:category', function(req, res, next) {
+    var category = req.params.category;
     // var category = "Auto"
+    console.log("Post Param:", category)
     db.any(`SELECT subcategory FROM expensecategories WHERE category = $1 GROUP BY subcategory, category ORDER BY subcategory`,[category]).then(function (subcategoryData) {
         res.json(subcategoryData);
         console.log(subcategoryData);

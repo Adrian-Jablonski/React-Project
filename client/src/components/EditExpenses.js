@@ -45,14 +45,22 @@ class EditExpenses extends Component {
     // e.target.reset();
   }
   categoryChange() {
-    axios.post("/expenseSubcategories", {
+    axios.post("/expenseSubcategories/" + this.refs.category.value, {
       category: this.refs.category.value,
       })
       .then(function(response) {
-        console.log("category change response")
-        console.log(response)
+        console.log("category change response");
+        console.log(response);
     })
-    this.props.categoryChange(this.refs.category.value);
+    .then(response => this.props.categoryChange(this.refs.category.value))
+
+    // axios.get("/expenseSubcategories/" + this.refs.category.value)
+    //   .then(response => this.props.categoryChange(response))
+    // // axios.get("/expenseSubcategories").then(function(response) {
+    // //   console.log(response);
+    // //   this.props.categoryChange(response);
+    // // })
+    
   }
     
   render() {

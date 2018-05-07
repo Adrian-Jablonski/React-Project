@@ -8,7 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addExpenseRouter = require('./routes/addExpense');
 var expenseCategories = require('./routes/expenseCategories');
-var expenseSubcategories = require('./routes/expenseSubcategories');
+// var expenseSubcategories = require('./routes/expenseSubcategories');
+
 
 var app = express();
 
@@ -26,7 +27,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/addExpense', addExpenseRouter);
 app.use('/expenseCategories', expenseCategories);
-app.use('/expenseSubcategories', expenseSubcategories);
+app.use(require('./routes/expenseSubcategories'))
+// app.use('/expenseSubcategories', expenseSubcategories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

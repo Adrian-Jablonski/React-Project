@@ -38,3 +38,13 @@ SELECT userinfo.username, (userinfo.balance - SUM(expenses.amount)) AS balance F
 INNER JOIN userinfo
 ON userinfo.id = expenses.userid
 GROUP BY userinfo.username, userinfo.balance
+
+-- Calculates user expense summary by category
+SELECT category, SUM(amount) AS total FROM expenses
+GROUP BY category
+ORDER BY total desc
+
+-- Calculates user expense summary by subcategory
+SELECT category, subcategory, SUM(amount) AS total FROM expenses
+GROUP BY category, subcategory
+ORDER BY total desc

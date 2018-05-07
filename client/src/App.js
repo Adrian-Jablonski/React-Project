@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   getSubcategories() {
-    fetch('/expenseSubcategories')
+    fetch('/expenseSubcategories/Auto')
       .then(res => res.json())
       .then(expSubcategories => this.setState({expSubcategories}));
   }
@@ -38,10 +38,6 @@ class App extends Component {
     this.getSubcategories();
   }
 
-  // componentDidUpdate() {
-  //   this.getSubcategories();
-  // }
-
   lessExpense(amount) {
     // Edits the balance for expenses
     let users = this.state.users;
@@ -50,17 +46,12 @@ class App extends Component {
   }
   categoryChange(categ) {
     // Changes the subcategory options based on the category that is selected
-    let expSubcategories = this.state.expSubcategories;
-    
-    fetch('/expenseSubcategories')
+    console.log("categoryChange:",categ)
+    fetch('/expenseSubcategories/' + categ)
       .then(res => res.json())
-      .then(expSubcategories => this.setState({expSubcategories}, function(){
-        console.log('state:', this.expSubcategories);
-      }));
-    console.log("PASS :", categ)
+      .then(expSubcategories => this.setState({expSubcategories}));
   }
-
-
+    
   render() {
     return (
       <div>
