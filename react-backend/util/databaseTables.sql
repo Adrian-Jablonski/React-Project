@@ -34,7 +34,7 @@ ORDER BY category
 SELECT SUM(amount) FROM expenses
 
 -- Calculates user balance based on start balance and expenses
-SELECT (userinfo.balance - SUM(expenses2.amount)) AS total FROM expenses2
+SELECT userinfo.username, (userinfo.balance - SUM(expenses.amount)) AS balance FROM expenses
 INNER JOIN userinfo
-ON userinfo.id = expenses2.userid
-GROUP BY userinfo.balance
+ON userinfo.id = expenses.userid
+GROUP BY userinfo.username, userinfo.balance

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Users from './components/Users.js';
 import EditExpenses from './components/EditExpenses.js'
+import axios from 'axios';
 
 class App extends Component {
 
@@ -9,9 +10,10 @@ class App extends Component {
         expSubcategories: []
     }
   getUsers() {
+    let users = this.state.users;
     fetch('/users')
       .then(res => res.json())
-      .then(users => this.setState({users}));
+      .then(user => this.setState({users:user}));
   }
   getCategories() {
     fetch('/expenseCategories')
@@ -33,18 +35,41 @@ class App extends Component {
 
   componentDidMount() {
     this.getUsers();
+    this.getSubcategories();
   }
 
   // componentDidUpdate() {
   //   this.getSubcategories();
   // }
 
+  lessExpense(amount) {
+    // Edits the balance for expenses
+    let users = this.state.users;
+    users[0]["balance"] -= amount;
+    this.setState({users:users})
+  }
+  categoryChange(categ) {
+    // Changes the subcategory options based on the category that is selected
+    let expSubcategories = this.state.expSubcategories;
+    
+    fetch('/expenseSubcategories')
+      .then(res => res.json())
+      .then(expSubcategories => this.setState({expSubcategories}, function(){
+        console.log('state:', this.expSubcategories);
+      }));
+    console.log("PASS :", categ)
+  }
+
+
   render() {
     return (
       <div>
+        {/* <Users users={this.state.users} /> */}
         <Users users={this.state.users} />
         <br />
-        <EditExpenses expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} />
+        <EditExpenses lessExpense={this.lessExpense.bind(this)} 
+        categoryChange={this.categoryChange.bind(this)}
+         expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} />
       </div>
     );
   }

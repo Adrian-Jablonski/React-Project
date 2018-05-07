@@ -5,12 +5,12 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import InputMask from 'react-input-mask';
 
 class EditExpenses extends Component {
-  state = {newExpense:[]};
+  state = {newExpense:[], category: []};
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.refs.category.value === '') {
-      alert('Category is required');
+    if (this.refs.amount.value === '') {
+      alert('Amount is required');
     } else {
 
       this.setState(
@@ -34,23 +34,27 @@ class EditExpenses extends Component {
         .then(function(response) {
           console.log(response)
         })
+
+        // edits user balance on screen for expenses
+      this.props.lessExpense(this.state.newExpense['amount']);
+
       })
+      
       
     }
     // e.target.reset();
   }
-
   categoryChange() {
-    console.log("Testing")
     axios.post("/expenseSubcategories", {
       category: this.refs.category.value,
-  })
-  .then(function(response) {
-    console.log(response)
-  })
+      })
+      .then(function(response) {
+        console.log("category change response")
+        console.log(response)
+    })
+    this.props.categoryChange(this.refs.category.value);
   }
-  
-
+    
   render() {
     // Populates Category dropdown field from expensecategories table inside expense_tracker database 
     let expCategory = this.props.expCategories.map(category => {
@@ -59,6 +63,7 @@ class EditExpenses extends Component {
 
     let expSubcategory = this.props.expSubcategories.map(subcategory => {
       return <option key={subcategory["subcategory"]} value={subcategory["subcategory"]}> {subcategory["subcategory"]} </option>
+      
     });
 
     let now = new Date();
