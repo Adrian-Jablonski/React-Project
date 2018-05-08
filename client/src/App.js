@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import Users from './components/Users.js';
 import EditExpenses from './components/EditExpenses.js'
+import SummaryCategory from './components/SummaryCategory';
 import axios from 'axios';
+import Chart from './components/Chart';
+import Chart2 from './components/Chart2';
 
 class App extends Component {
 
   state = {users : [], 
         expCategories: [],
-        expSubcategories: []
+        expSubcategories: [],
+        summaryExpCategories: [],
+        chartData: {}
     }
   getUsers() {
     let users = this.state.users;
@@ -27,15 +32,67 @@ class App extends Component {
       .then(expSubcategories => this.setState({expSubcategories}));
   }
 
+  getsummaryExpCategories() {
+    let summaryExpCategories = this.state.summaryExpCategories;
+    fetch('/summaryExpCategory')
+      .then(res => res.json())
+      .then(summary => this.setState({summaryExpCategories:summary}));
+  }
+
+  getChartData() {
+    var labelList = [];
+    var dataList = [];
+    fetch('/summaryExpCategory')
+      .then(res => res.json())
+      .then(summary => {
+        var data = summary;
+        console.log("CHART DATA");
+        console.log(data);
+        
+        for (var i = 0; i < data.length; i++) {
+          labelList[i] = data[i]["category"];
+          dataList[i] = parseFloat(data[i]["total"]).toFixed(2);
+        }
+        console.log(dataList)
+      })
+        this.state.chartData = {
+              labels: labelList,
+              datasets: [
+                  {
+                      label: 'Expense Category',
+                      data: dataList,
+                      backgroundColor:[
+                          'rgba(55, 255, 132, 0.6)',
+                          'rgba(54, 162, 235, 0.6)',
+                          'rgba(255, 159, 64, 0.6)',
+                          'rgba(255, 0, 0, 0.6)',
+                          'rgba(255, 260, 64, 0.6)',
+                          'rgba(0, 0, 255, 0.6)',
+                          'rgba(15, 15, 15, 0.6)',
+                          'rgba(255, 100, 64, 0.6)',
+                          'rgba(40, 260, 23, 0.6)',
+                      ]
+                  }
+              ]
+        }
+  } 
+
   componentWillMount() {
+    this.getChartData();
     this.getUsers();
     this.getCategories();
     this.getSubcategories();
+    this.getsummaryExpCategories();
   }
 
   componentDidMount() {
+    this.getChartData();
     this.getUsers();
     this.getSubcategories();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   lessExpense(amount) {
@@ -51,16 +108,34 @@ class App extends Component {
       .then(res => res.json())
       .then(expSubcategories => this.setState({expSubcategories}));
   }
+  
+  tableUpdate(categ, amount) {
+    // console.log(categ, amount)
+    // let summaryExpCategories = this.state.summaryExpCategories;
+    // console.log("Category", summaryExpCategories[categ]);
+    // console.log(summaryExpCategories)
+    fetch('/summaryExpCategory')
+      .then(res => res.json())
+      .then(summary => this.setState({summaryExpCategories:summary}));
+  }
+
     
   render() {
     return (
-      <div>
+      <div className="content">
         {/* <Users users={this.state.users} /> */}
         <Users users={this.state.users} />
         <br />
         <EditExpenses lessExpense={this.lessExpense.bind(this)} 
-        categoryChange={this.categoryChange.bind(this)}
-         expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} />
+        categoryChange={this.categoryChange.bind(this)} 
+        tableUpdate={this.tableUpdate.bind(this)}
+         expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} />    
+         <SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
+
+         <Chart chartData={this.state.chartData} />
+         <div className="pieChart">
+          <Chart2 chartData={this.state.chartData} />
+         </div>
       </div>
     );
   }

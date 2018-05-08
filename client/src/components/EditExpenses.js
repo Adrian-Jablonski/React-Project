@@ -37,6 +37,7 @@ class EditExpenses extends Component {
 
         // edits user balance on screen for expenses
       this.props.lessExpense(this.state.newExpense['amount']);
+      this.props.tableUpdate(this.refs.category.value, this.refs.amount.value);
 
       })
       
@@ -53,14 +54,6 @@ class EditExpenses extends Component {
         console.log(response);
     })
     .then(response => this.props.categoryChange(this.refs.category.value))
-
-    // axios.get("/expenseSubcategories/" + this.refs.category.value)
-    //   .then(response => this.props.categoryChange(response))
-    // // axios.get("/expenseSubcategories").then(function(response) {
-    // //   console.log(response);
-    // //   this.props.categoryChange(response);
-    // // })
-    
   }
     
   render() {

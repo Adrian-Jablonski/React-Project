@@ -5,3 +5,29 @@
 select, input {
     width: 150px;
 }
+
+.spentAmount {
+    text-align: center;
+    padding-left: 40px;
+}
+
+th {
+    border: 2pt solid black;
+    background-color: grey;
+    color: white;
+}
+
+td {
+    border: 1pt solid black;
+}
+
+.content {
+    margin-left: 20px;
+}
+
+.pieChart {
+    width: 80%;
+    height: 80%;
+    max-width: 500px;
+    max-height: 500px;
+}
