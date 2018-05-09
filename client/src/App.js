@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Users from './components/Users.js';
 import EditExpenses from './components/EditExpenses.js'
 import SummaryCategory from './components/SummaryCategory';
+import EditIncome from './components/EditIncome.js'
 import axios from 'axios';
 import Chart from './components/Chart';
 import Chart2 from './components/Chart2';
@@ -100,6 +101,15 @@ class App extends Component {
     users[0]["balance"] -= amount;
     this.setState({users:users})
   }
+
+  addIncome(amount) {
+    // Edits the balance for expenses
+    let users = this.state.users;
+    users[0]["balance"] -= amount;
+    this.setState({users:users})
+  }
+
+
   categoryChange(categ) {
     // Changes the subcategory options based on the category that is selected
     // console.log("categoryChange:",categ)
@@ -113,9 +123,11 @@ class App extends Component {
     // let summaryExpCategories = this.state.summaryExpCategories;
     // console.log("Category", summaryExpCategories[categ]);
     // console.log(summaryExpCategories)
+    console.log("Fetch")
     fetch('/summaryExpCategory')
       .then(res => res.json())
-      .then(summary => this.setState({summaryExpCategories:summary}));
+      .then(summary => this.setState({summaryExpCategories:summary}, function(){{console.log("SummaryEXP : ", this.state.summaryExpCategories)
+      }}));
   }
 
     
@@ -126,17 +138,17 @@ class App extends Component {
         <Users users={this.state.users} />
         <br />
 
-
+        <EditIncome addIncome={this.addIncome.bind(this)}/>
 
         <EditExpenses lessExpense={this.lessExpense.bind(this)} 
         categoryChange={this.categoryChange.bind(this)} 
         tableUpdate={this.tableUpdate.bind(this)}
-         expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} />    
+         expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} summaryExpCategories={this.state.summaryExpCategories}/>    
          <Grid>
           <Row className ="show-grid">
 
-          <Col xs={5}><SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
-          </Col>
+          {/* <Col xs={5}><SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
+          </Col> */}
 
           <Col xs={7}>
             <div className="pieChart">

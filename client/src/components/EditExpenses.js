@@ -3,6 +3,7 @@ import axios from 'axios';
 import './styles/styles.css';
 import { Grid, Row, Col } from 'react-bootstrap';
 import InputMask from 'react-input-mask';
+import SummaryCategory from './SummaryCategory';
 
 class EditExpenses extends Component {
   state = {newExpense:[], category: []};
@@ -12,7 +13,8 @@ class EditExpenses extends Component {
     if (this.refs.amount.value === '') {
       alert('Amount is required');
     } else {
-
+      console.log("Properties")
+      console.log(this.props.summaryExpCategories);
       this.setState(
         {newExpense:{
           category: this.refs.category.value,
@@ -24,40 +26,57 @@ class EditExpenses extends Component {
         } 
       }, 
       function() {
-        axios.post("/addExpense", {
-            category: this.refs.category.value,
-            subcategory: this.refs.subcategory.value,
-            amount: this.refs.amount.value,
-            type: this.refs.type.value,
-            expdate: this.refs.expdate.value
-            // Receives user input from form
-        })
-        .then(response => {
-          console.log("Then Test")
-          this.props.tableUpdate();
-        })
-        .then(
-          console.log("Then Test2")
-        )
-        .then((response) => {
-          // console.log(response);
-          console.log("Then Test3")
-          this.props.tableUpdate();
-        })
-        .then(
-          console.log("Then Test4")
-        )
-        .catch(function (error) {
-          console.log(error);
-        });
+        console.log("Amount ",this.state.newExpense.amount)
+        
+        
+      //   axios.post("/addExpense", {
+      //       category: this.refs.category.value,
+      //       subcategory: this.refs.subcategory.value,
+      //       amount: this.refs.amount.value,
+      //       type: this.refs.type.value,
+      //       expdate: this.refs.expdate.value
+      //       // Receives user input from form
+      //   })
+      //   .then(
+          
+      // )
+      //   .then(
+      //     console.log("axios2")
+      //   )
+        
+        
 
         // edits user balance on screen for expenses
       this.props.lessExpense(this.state.newExpense['amount']);
-      this.props.tableUpdate();
+      // this.props.tableUpdate();
 
-      })      
+      } 
+      
+    ) 
+         
     }
     // e.target.reset();
+    this.addExpense();
+  }
+
+  addExpense(){
+    var amount = this.state.newExpense.amount;
+
+    axios.post("/addExpense", {
+      category: this.refs.category.value,
+      subcategory: this.refs.subcategory.value,
+      amount: amount,
+      type: this.refs.type.value,
+      expdate: this.refs.expdate.value
+      // Receives user input from form
+  })
+  .then(
+    console.log("axios")
+  )
+    .then(
+      console.log("axios2"),
+      this.props.tableUpdate()
+    )
   }
   categoryChange() {
     axios.post("/expenseSubcategories/" + this.refs.category.value, {
@@ -135,6 +154,9 @@ class EditExpenses extends Component {
             </tr>
             
           </tbody>
+
+          <SummaryCategory summaryExpCategories={this.props.summaryExpCategories} />
+          
             {/* <Grid>
               <Row className ="show-grid">
                 <Col xs={3}><label className="expenseLabel">Date: </label></Col>

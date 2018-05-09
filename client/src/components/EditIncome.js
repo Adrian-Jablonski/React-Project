@@ -16,20 +16,16 @@ class EditIncome extends Component {
       this.setState(
         {newExpense:{
           category: this.refs.category.value,
-          subcategory: this.refs.subcategory.value,
           amount: this.refs.amount.value,
-          type: this.refs.type.value,
-          expdate: this.refs.expdate.value
+          incdate: this.refs.incdate.value
           // Retrieves user input from form
         } 
       }, 
       function() {
         axios.post("/addIncome", {
             category: this.refs.category.value,
-            subcategory: this.refs.subcategory.value,
             amount: this.refs.amount.value,
-            type: this.refs.type.value,
-            expdate: this.refs.expdate.value
+            incdate: this.refs.incdate.value
             // Receives user input from form
         })
         .then(
@@ -70,15 +66,6 @@ class EditIncome extends Component {
   }
     
   render() {
-    // Populates Category dropdown field from expensecategories table inside expense_tracker database 
-    let expCategory = this.props.expCategories.map(category => {
-      return <option key={category["category"]} value={category["category"]}> {category["category"]} </option>
-    });
-
-    let expSubcategory = this.props.expSubcategories.map(subcategory => {
-      return <option key={subcategory["subcategory"]} value={subcategory["subcategory"]}> {subcategory["subcategory"]} </option>
-      
-    });
 
     let now = new Date();
     let day = now.getDate();
@@ -99,13 +86,32 @@ class EditIncome extends Component {
         <h1>Add Income</h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
         <div>
-        <InputMask mask="99/99/9999" value="currentDate" ref="expdate" name="expdate" value={currentDate}/>
-        <select ref="type" name="type">
-          <option key="paycheck" value="paycheck">Paycheck</option>
-          <option key="investment" value="investment">Investment</option>
-          <option key="bonus" value="bonus">Bonus</option>
-          <option key="other" value="other">Other</option>
-        </select>
+        <tbody>
+          <tr>
+            <td><label className="expenseLabel">Date </label></td>
+            <td className="blankColumn"></td>
+            <td><label className="expenseLabel">Category</label></td>
+            <td className="blankColumn"></td>
+            <td><label className="expenseLabel">Amount</label></td>
+          </tr>
+          <tr>
+            <td><InputMask mask="99/99/9999" value="currentDate" ref="incdate" name="incdate" value={currentDate}/>
+            </td>
+            <td className="blankColumn"></td>
+            <td>
+            <select ref="category" name="category">
+              <option key="paycheck" value="paycheck">Paycheck</option>
+              <option key="investment" value="investment">Investment</option>
+              <option key="bonus" value="bonus">Bonus</option>
+              <option key="other" value="other">Other</option>
+            </select>
+            </td>
+            <td className="blankColumn"></td>
+            <td><input type="text" ref="amount" name="amount" /></td>
+          </tr>
+          
+        </tbody>
+
         </div>
           <input type="submit" value="Add Income" />
         </form> 

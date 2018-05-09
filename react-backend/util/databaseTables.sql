@@ -30,6 +30,8 @@ CREATE TABLE incomeCategories (
 
 INSERT INTO expenses (userid, category, subcategory, amount, paymenttype, expensedate) VALUES (1, 'Food', 'Groceries', 23, 'Cash', '05/05/2018');
 
+INSERT INTO income (userid, category, amount, incomedate) VALUES (1, 'Paycheck', '2000', '05/05/2018');
+
 -- Gets summary by category
 SELECT category, SUM(amount) FROM expenses 
 GROUP BY category
