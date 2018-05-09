@@ -18,16 +18,8 @@ class Chart extends Component {
                     width= {200}
                     height={150}
                     options={{
-                        title: {
-                            display: true,
-                            text: 'Categories',
-                            fontSize: 20
-                        },
                         legend: {
-                            position: 'right',
-                            labels: {
-                                boxWidth: 6
-                            }
+                            display: false
                         }
                     }}
                 />

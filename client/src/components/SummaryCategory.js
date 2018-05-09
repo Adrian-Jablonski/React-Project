@@ -5,10 +5,14 @@ import React, { Component } from 'react';
 
 class SummaryCategory extends Component {
     render() {
+        var i = 0;
         let summaryRow = this.props.summaryExpCategories.map(data =>{
+            i += 1;
+            var expTableRows = "expTableRow" + i;
             // console.log(data);
             return (
-                <tr className="expTableRows">
+                <tr className={expTableRows}>
+                    <td>{i}</td>
                     <td>{data.category}</td>
                     <td key={data.category} className="spentAmount">$ {parseFloat(data.total).toFixed(2)}</td>
                 </tr>
@@ -18,6 +22,7 @@ class SummaryCategory extends Component {
         return (
             <tbody className="expenseTable">
                 <tr>
+                    <th className="numb">#</th>
                     <th>Category</th>
                     <th className="spentAmount">Spent</th>
                 </tr>

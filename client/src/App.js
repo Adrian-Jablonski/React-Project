@@ -5,6 +5,7 @@ import SummaryCategory from './components/SummaryCategory';
 import axios from 'axios';
 import Chart from './components/Chart';
 import Chart2 from './components/Chart2';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends Component {
 
@@ -66,11 +67,11 @@ class App extends Component {
                           'rgba(54, 162, 235, 0.6)',
                           'rgba(255, 159, 64, 0.6)',
                           'rgba(255, 0, 0, 0.6)',
+                          'rgba(40, 260, 23, 0.6)',
                           'rgba(255, 260, 64, 0.6)',
-                          'rgba(0, 0, 255, 0.6)',
                           'rgba(15, 15, 15, 0.6)',
                           'rgba(255, 100, 64, 0.6)',
-                          'rgba(40, 260, 23, 0.6)',
+                          'rgba(0, 0, 255, 0.6)',
                       ]
                   }
               ]
@@ -130,12 +131,21 @@ class App extends Component {
         categoryChange={this.categoryChange.bind(this)} 
         tableUpdate={this.tableUpdate.bind(this)}
          expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} />    
-         <SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
+         <Grid>
+          <Row className ="show-grid">
+
+          <Col xs={5}><SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
+          </Col>
+
+          <Col xs={7}>
+            <div className="pieChart">
+            <Chart2 chartData={this.state.chartData} /></div>
+          </Col>
+          </Row>
+         </Grid>
 
          <Chart chartData={this.state.chartData} />
-         <div className="pieChart">
-          <Chart2 chartData={this.state.chartData} />
-         </div>
+         
       </div>
     );
   }
