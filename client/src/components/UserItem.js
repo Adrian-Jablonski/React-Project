@@ -4,9 +4,8 @@ class UserItem extends Component {
 
   render() {
     return (
-      <div>
-        Name: {this.props.user.username} <br /> 
-        Money: $ {this.props.user.balance} <br />
+      <div className="balance">
+        Balance ${this.props.user.balance} <br />
 
       </div>
     );

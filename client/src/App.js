@@ -54,7 +54,7 @@ class App extends Component {
           labelList[i] = data[i]["category"];
           dataList[i] = parseFloat(data[i]["total"]).toFixed(2);
         }
-        console.log(dataList)
+        // console.log(dataList)
       })
         this.state.chartData = {
               labels: labelList,
@@ -84,16 +84,14 @@ class App extends Component {
     this.getCategories();
     this.getSubcategories();
     this.getsummaryExpCategories();
+    this.tableUpdate();
   }
 
   componentDidMount() {
     this.getChartData();
     this.getUsers();
     this.getSubcategories();
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer)
+    this.tableUpdate();
   }
 
   lessExpense(amount) {
@@ -104,13 +102,13 @@ class App extends Component {
   }
   categoryChange(categ) {
     // Changes the subcategory options based on the category that is selected
-    console.log("categoryChange:",categ)
+    // console.log("categoryChange:",categ)
     fetch('/expenseSubcategories/' + categ)
       .then(res => res.json())
       .then(expSubcategories => this.setState({expSubcategories}));
   }
   
-  tableUpdate(categ, amount) {
+  tableUpdate() {
     // console.log(categ, amount)
     // let summaryExpCategories = this.state.summaryExpCategories;
     // console.log("Category", summaryExpCategories[categ]);
@@ -127,6 +125,9 @@ class App extends Component {
         {/* <Users users={this.state.users} /> */}
         <Users users={this.state.users} />
         <br />
+
+
+
         <EditExpenses lessExpense={this.lessExpense.bind(this)} 
         categoryChange={this.categoryChange.bind(this)} 
         tableUpdate={this.tableUpdate.bind(this)}

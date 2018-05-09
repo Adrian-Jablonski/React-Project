@@ -6,7 +6,7 @@ class Chart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData:props.chartData
+            chartData2:props.chartData
         }
     }
     
@@ -14,7 +14,7 @@ class Chart extends Component {
         return(
             <div className="chart">
                 <Pie
-                    data={this.state.chartData}
+                    data={this.state.chartData2}
                     width= {200}
                     height={150}
                     options={{

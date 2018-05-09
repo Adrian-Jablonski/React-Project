@@ -11,7 +11,7 @@ var db = myDatabase.database;
     console.log("Get Param:", category)
     db.any(`SELECT subcategory FROM expensecategories WHERE category = $1 GROUP BY subcategory, category ORDER BY subcategory`,[category]).then(function (subcategoryData) {
         res.json(subcategoryData);
-        console.log(subcategoryData);
+        // console.log(subcategoryData);
     })
 });
 

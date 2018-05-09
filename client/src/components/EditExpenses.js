@@ -18,7 +18,8 @@ class EditExpenses extends Component {
           category: this.refs.category.value,
           subcategory: this.refs.subcategory.value,
           amount: this.refs.amount.value,
-          type: this.refs.type.value
+          type: this.refs.type.value,
+          expdate: this.refs.expdate.value
           // Retrieves user input from form
         } 
       }, 
@@ -29,19 +30,32 @@ class EditExpenses extends Component {
             amount: this.refs.amount.value,
             type: this.refs.type.value,
             expdate: this.refs.expdate.value
-            // Retrieves user input from form
+            // Receives user input from form
         })
-        .then(function(response) {
-          console.log(response)
+        .then(response => {
+          console.log("Then Test")
+          this.props.tableUpdate();
         })
+        .then(
+          console.log("Then Test2")
+        )
+        .then((response) => {
+          // console.log(response);
+          console.log("Then Test3")
+          this.props.tableUpdate();
+        })
+        .then(
+          console.log("Then Test4")
+        )
+        .catch(function (error) {
+          console.log(error);
+        });
 
         // edits user balance on screen for expenses
       this.props.lessExpense(this.state.newExpense['amount']);
-      this.props.tableUpdate(this.refs.category.value, this.refs.amount.value);
+      this.props.tableUpdate();
 
-      })
-      
-      
+      })      
     }
     // e.target.reset();
   }
@@ -86,7 +100,42 @@ class EditExpenses extends Component {
         <h1>Add Expenses</h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
         <div>
-            <Grid>
+          <tbody>
+            <tr>
+              <td><label className="expenseLabel">Date </label></td>
+              <td className="blankColumn"></td>
+              <td><label className="expenseLabel">Category /</label></td>
+              <td className="blankColumn"></td>
+              <td><label className="expenseLabel">Payment Type / </label></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td className="blankColumn"></td>
+              <td><label className="expenseLabel">Subcategory</label></td>
+              <td className="blankColumn"></td>
+              <td><label className="expenseLabel">Amount </label></td>
+            </tr>
+            <tr>
+              <td><InputMask mask="99/99/9999" value="currentDate" ref="expdate" name="expdate" value={currentDate}/></td>
+              <td className="blankColumn"></td>
+              <td><select onChange={this.categoryChange.bind(this)} ref="category" name="category">{expCategory}</select></td>
+              <td className="blankColumn"></td>
+              <td><select ref="type" name="type">
+                    <option key="cash" value="Cash">Cash</option>
+                    <option key="creditcard" value="Credit Card">Credit Card</option>
+                    <option key="check" value="Check">Check</option>
+                  </select></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td className="blankColumn"></td>
+              <td><select ref="subcategory" name="subcategory">{expSubcategory}</select></td>
+              <td className="blankColumn"></td>
+              <td><input type="text" ref="amount" name="amount" /></td>
+            </tr>
+            
+          </tbody>
+            {/* <Grid>
               <Row className ="show-grid">
                 <Col xs={3}><label className="expenseLabel">Date: </label></Col>
                 <Col xs={9}><InputMask mask="99/99/9999" value="currentDate" ref="expdate" name="expdate" value={currentDate}/></Col>
@@ -105,7 +154,6 @@ class EditExpenses extends Component {
             <Grid>
                 <Row className ="show-grid">
                   <Col xs={3}><label className="expenseLabel">Sub Category </label> </Col>
-                  {/* <input type="text" ref="subcategory" name="subcategory" /> */}
                   <Col xs={9}><select ref="subcategory" name="subcategory">{expSubcategory}</select> </Col>
                 </Row>
               </Grid>
@@ -119,7 +167,6 @@ class EditExpenses extends Component {
                     <option key="creditcard" value="Credit Card">Credit Card</option>
                     <option key="check" value="Check">Check</option>
                   </select> </Col>
-                  {/* <Col xs={9}><input type="text" ref="type" name="type" /> </Col> */}
                 </Row>
               </Grid>
           </div>
@@ -127,13 +174,13 @@ class EditExpenses extends Component {
               <Grid>
                 <Row className ="show-grid">
                   <Col xs={3}><label className="expenseLabel">Amount $</label> </Col>
-                  {/* <input type="text" ref="subcategory" name="subcategory" /> */}
                   <Col xs={9}><input type="text" ref="amount" name="amount" /></Col>
                 </Row>
               </Grid>
+              */}
           </div>
           <input type="submit" value="Add Expense" />
-        </form>
+        </form> 
       </div>
       
     );

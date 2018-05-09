@@ -23,6 +23,11 @@ CREATE TABLE expenseCategories (
     type VARCHAR
 );
 
+CREATE TABLE incomeCategories (
+    id SERIAL NOT NULL PRIMARY KEY,
+    category VARCHAR
+);
+
 INSERT INTO expenses (userid, category, subcategory, amount, paymenttype, expensedate) VALUES (1, 'Food', 'Groceries', 23, 'Cash', '05/05/2018');
 
 -- Gets summary by category

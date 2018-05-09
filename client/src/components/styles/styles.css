@@ -2,6 +2,10 @@
     margin-bottom: 10px;
 }
 
+.blankColumn {
+    width: 10px;
+}
+
 select, input {
     width: 150px;
 }
@@ -26,6 +30,10 @@ th {
 /* td {
     border: 1pt solid black;
 } */
+
+.balance {
+    font-size: 20px;
+}
 
 .content {
     margin-left: 20px;
