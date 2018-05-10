@@ -11,30 +11,43 @@ import { Grid, Row, Col } from 'react-bootstrap';
 class App extends Component {
 
   state = {users : [], 
+        totals : {},
         expCategories: [],
         expSubcategories: [],
         summaryExpCategories: [],
         chartData: {}
     }
   getUsers() {
+    // Currently used to show balance at the top of the page
     let users = this.state.users;
     fetch('/users')
       .then(res => res.json())
       .then(user => this.setState({users:user}));
   }
+  getTotals() {
+    // What I will want to use to show expense and income totals on top of page
+    let totals = this.state.totals;
+    let expTotal = totals.expTotal
+    fetch('/expTotals')
+      .then(res => res.json())
+      .then(total => this.setState({expTotal:total}));
+  }
   getCategories() {
+    // Fills the category dropdown with the categories in the database
     fetch('/expenseCategories')
       .then(res => res.json())
       .then(expCategories => this.setState({expCategories}));
   }
 
   getSubcategories() {
+    // Defaults the sub category dropdown to Auto for page load
     fetch('/expenseSubcategories/Auto')
       .then(res => res.json())
       .then(expSubcategories => this.setState({expSubcategories}));
   }
 
   getsummaryExpCategories() {
+    // Used to get new summary data by category
     let summaryExpCategories = this.state.summaryExpCategories;
     fetch('/summaryExpCategory')
       .then(res => res.json())
@@ -42,8 +55,10 @@ class App extends Component {
   }
 
   getChartData() {
+    // Generates graphs of the data. Currently does not update the chart on any button clicks
     var labelList = [];
     var dataList = [];
+    // Used to pass the current data to the graphs
     fetch('/summaryExpCategory')
       .then(res => res.json())
       .then(summary => {
@@ -103,31 +118,42 @@ class App extends Component {
   }
 
   addIncome(amount) {
-    // Edits the balance for expenses
+    // Edits the balance for income
+    amount = Number(amount);
     let users = this.state.users;
-    users[0]["balance"] -= amount;
+    users[0]["balance"] += amount;
     this.setState({users:users})
   }
 
 
   categoryChange(categ) {
     // Changes the subcategory options based on the category that is selected
-    // console.log("categoryChange:",categ)
     fetch('/expenseSubcategories/' + categ)
       .then(res => res.json())
       .then(expSubcategories => this.setState({expSubcategories}));
   }
   
-  tableUpdate() {
-    // console.log(categ, amount)
-    // let summaryExpCategories = this.state.summaryExpCategories;
-    // console.log("Category", summaryExpCategories[categ]);
-    // console.log(summaryExpCategories)
-    console.log("Fetch")
-    fetch('/summaryExpCategory')
-      .then(res => res.json())
-      .then(summary => this.setState({summaryExpCategories:summary}, function(){{console.log("SummaryEXP : ", this.state.summaryExpCategories)
-      }}));
+  tableUpdate(update) {
+    // Updates expense table when the add expense button is clicked
+    var priorState = this.state.summaryExpCategories;
+    if (update === true) {
+      var i = 0;
+      while (update === true) {
+        fetch('/summaryExpCategory')
+        .then(res => res.json())
+        .then(summary => this.setState({summaryExpCategories:summary}))
+        if (i === 100) {
+          update = false;
+          this.getChartData();
+          // Should update the chart after clicking add expense button but does not work
+        }
+        else {
+          i += 1
+        }
+        //console.log(this.state.summaryExpCategories)
+        //console.log(priorState === this.state.summaryExpCategories)
+      }
+    }
   }
 
     
@@ -147,8 +173,8 @@ class App extends Component {
          <Grid>
           <Row className ="show-grid">
 
-          {/* <Col xs={5}><SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
-          </Col> */}
+          <Col xs={5}><SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
+          </Col>
 
           <Col xs={7}>
             <div className="pieChart">

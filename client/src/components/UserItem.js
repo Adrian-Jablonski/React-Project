@@ -6,7 +6,7 @@ class UserItem extends Component {
     return (
       <div className="balance">
         Balance ${this.props.user.balance} <br />
-
+        {/* Expense $ {this.props.total.expTotal} */}
       </div>
     );
   }

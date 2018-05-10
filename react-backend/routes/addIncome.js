@@ -7,10 +7,6 @@ var myDatabase = require('../util/database.js');
 
 var db = myDatabase.database;
 
-// var options = {
-//     promiseLib : promise
-// }
-
 router.get('/', function(req, res) {
     console.log("Form Submitted")
       

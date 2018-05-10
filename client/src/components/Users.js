@@ -5,12 +5,16 @@ import UserItem from './UserItem';
 class Users extends Component {
     render() {
         var person = this.props.users.map(user =>{
-            console.log(user);
+            // console.log(user);
             return (
                 <UserItem user = {user} />
+                
             )
-            
         })
+        // var total = this.props.totals;
+        // return (
+        //     <UserItem total = {total} />
+        // )
 
         return (
             <div>

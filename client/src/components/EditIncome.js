@@ -5,16 +5,17 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import InputMask from 'react-input-mask';
 
 class EditIncome extends Component {
-  state = {newExpense:[], category: []};
+  state = {newIncome:[], category: []};
 
   handleSubmit(e) {
+    // Runs on add income button click
     e.preventDefault();
     if (this.refs.amount.value === '') {
       alert('Amount is required');
     } else {
 
       this.setState(
-        {newExpense:{
+        {newIncome:{
           category: this.refs.category.value,
           amount: this.refs.amount.value,
           incdate: this.refs.incdate.value
@@ -29,40 +30,12 @@ class EditIncome extends Component {
             // Receives user input from form
         })
         .then(
-          console.log("Then Test")
+          this.props.addIncome(this.state.newIncome['amount'])
         )
-        .then(
-          console.log("Then Test2")
-        )
-        .then((response) => {
-          // console.log(response);
-          console.log("Then Test3")
-          this.props.tableUpdate();
-        })
-        .then(
-          console.log("Then Test4")
-        )
-        .catch(function (error) {
-          console.log(error);
-        });
-
-        // edits user balance on screen for expenses
-      this.props.lessExpense(this.state.newExpense['amount']);
-      // this.props.tableUpdate();
 
       })      
     }
     // e.target.reset();
-  }
-  categoryChange() {
-    axios.post("/expenseSubcategories/" + this.refs.category.value, {
-      category: this.refs.category.value,
-      })
-      .then(function(response) {
-        console.log("category change response");
-        console.log(response);
-    })
-    .then(response => this.props.categoryChange(this.refs.category.value))
   }
     
   render() {

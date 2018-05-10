@@ -9,6 +9,7 @@ class EditExpenses extends Component {
   state = {newExpense:[], category: []};
 
   handleSubmit(e) {
+    // runs on add expense button click
     e.preventDefault();
     if (this.refs.amount.value === '') {
       alert('Amount is required');
@@ -27,45 +28,26 @@ class EditExpenses extends Component {
       }, 
       function() {
         console.log("Amount ",this.state.newExpense.amount)
-        
-        
-      //   axios.post("/addExpense", {
-      //       category: this.refs.category.value,
-      //       subcategory: this.refs.subcategory.value,
-      //       amount: this.refs.amount.value,
-      //       type: this.refs.type.value,
-      //       expdate: this.refs.expdate.value
-      //       // Receives user input from form
-      //   })
-      //   .then(
-          
-      // )
-      //   .then(
-      //     console.log("axios2")
-      //   )
-        
-        
 
         // edits user balance on screen for expenses
       this.props.lessExpense(this.state.newExpense['amount']);
       // this.props.tableUpdate();
-
+      this.addExpense();
       } 
       
     ) 
          
     }
     // e.target.reset();
-    this.addExpense();
+    
   }
 
   addExpense(){
-    var amount = this.state.newExpense.amount;
 
     axios.post("/addExpense", {
       category: this.refs.category.value,
       subcategory: this.refs.subcategory.value,
-      amount: amount,
+      amount: this.state.newExpense.amount,
       type: this.refs.type.value,
       expdate: this.refs.expdate.value
       // Receives user input from form
@@ -74,11 +56,13 @@ class EditExpenses extends Component {
     console.log("axios")
   )
     .then(
+      // Updates table on add expense button click
       console.log("axios2"),
-      this.props.tableUpdate()
+      this.props.tableUpdate(true)
     )
   }
   categoryChange() {
+    // Runs SQL that receives subcategories based on the category selected and populates the dropdown.
     axios.post("/expenseSubcategories/" + this.refs.category.value, {
       category: this.refs.category.value,
       })
@@ -95,11 +79,13 @@ class EditExpenses extends Component {
       return <option key={category["category"]} value={category["category"]}> {category["category"]} </option>
     });
 
+    // Populates subcategory dropdown field based on selection in the category dropdown field
     let expSubcategory = this.props.expSubcategories.map(subcategory => {
       return <option key={subcategory["subcategory"]} value={subcategory["subcategory"]}> {subcategory["subcategory"]} </option>
       
     });
 
+    // Calculates todays date and adds it to the date fields
     let now = new Date();
     let day = now.getDate();
     let month = now.getMonth() + 1;
@@ -154,52 +140,6 @@ class EditExpenses extends Component {
             </tr>
             
           </tbody>
-
-          <SummaryCategory summaryExpCategories={this.props.summaryExpCategories} />
-          
-            {/* <Grid>
-              <Row className ="show-grid">
-                <Col xs={3}><label className="expenseLabel">Date: </label></Col>
-                <Col xs={9}><InputMask mask="99/99/9999" value="currentDate" ref="expdate" name="expdate" value={currentDate}/></Col>
-              </Row>
-            </Grid>
-          </div>
-          <div>
-            <Grid>
-              <Row className ="show-grid">
-                <Col xs={3}><label className="expenseLabel">Category: </label></Col>
-                <Col xs={9}><select onChange={this.categoryChange.bind(this)} ref="category" name="category">{expCategory}</select></Col>
-              </Row>
-            </Grid>
-          </div>
-          <div>
-            <Grid>
-                <Row className ="show-grid">
-                  <Col xs={3}><label className="expenseLabel">Sub Category </label> </Col>
-                  <Col xs={9}><select ref="subcategory" name="subcategory">{expSubcategory}</select> </Col>
-                </Row>
-              </Grid>
-          </div>
-          <div>
-              <Grid>
-                <Row className ="show-grid">
-                  <Col xs={3}><label className="expenseLabel">Payment Type: </label> </Col>
-                  <Col xs={9}><select ref="type" name="type">
-                    <option key="cash" value="Cash">Cash</option>
-                    <option key="creditcard" value="Credit Card">Credit Card</option>
-                    <option key="check" value="Check">Check</option>
-                  </select> </Col>
-                </Row>
-              </Grid>
-          </div>
-          <div>
-              <Grid>
-                <Row className ="show-grid">
-                  <Col xs={3}><label className="expenseLabel">Amount $</label> </Col>
-                  <Col xs={9}><input type="text" ref="amount" name="amount" /></Col>
-                </Row>
-              </Grid>
-              */}
           </div>
           <input type="submit" value="Add Expense" />
         </form> 
