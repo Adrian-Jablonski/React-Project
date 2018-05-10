@@ -30,7 +30,8 @@ class EditIncome extends Component {
             // Receives user input from form
         })
         .then(
-          this.props.addIncome(this.state.newIncome['amount'])
+          this.props.addIncome(this.state.newIncome['amount']),
+          this.props.tableUpdate(true)
         )
 
       })      
@@ -73,10 +74,10 @@ class EditIncome extends Component {
             <td className="blankColumn"></td>
             <td>
             <select ref="category" name="category">
-              <option key="paycheck" value="paycheck">Paycheck</option>
-              <option key="investment" value="investment">Investment</option>
-              <option key="bonus" value="bonus">Bonus</option>
-              <option key="other" value="other">Other</option>
+              <option key="paycheck" value="Paycheck">Paycheck</option>
+              <option key="investment" value="Investment">Investment</option>
+              <option key="bonus" value="Bonus">Bonus</option>
+              <option key="other" value="Other">Other</option>
             </select>
             </td>
             <td className="blankColumn"></td>

@@ -4,9 +4,26 @@ import './styles/styles.css';
 import { Grid, Row, Col } from 'react-bootstrap';
 import InputMask from 'react-input-mask';
 import SummaryCategory from './SummaryCategory';
+import Chart2 from './Chart2';
 
 class EditExpenses extends Component {
   state = {newExpense:[], category: []};
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState(
+      {newExpense:{
+        category: this.refs.category.value,
+        subcategory: this.refs.subcategory.value,
+        amount: this.refs.amount.value,
+        type: this.refs.type.value,
+        expdate: this.refs.expdate.value
+        // Retrieves user input from form
+      } 
+      
+  })
+  console.log("On change state: ", this.state)
+}
 
   handleSubmit(e) {
     // runs on add expense button click
@@ -16,26 +33,14 @@ class EditExpenses extends Component {
     } else {
       console.log("Properties")
       console.log(this.props.summaryExpCategories);
-      this.setState(
-        {newExpense:{
-          category: this.refs.category.value,
-          subcategory: this.refs.subcategory.value,
-          amount: this.refs.amount.value,
-          type: this.refs.type.value,
-          expdate: this.refs.expdate.value
-          // Retrieves user input from form
-        } 
-      }, 
-      function() {
-        console.log("Amount ",this.state.newExpense.amount)
-
+        
         // edits user balance on screen for expenses
       this.props.lessExpense(this.state.newExpense['amount']);
       // this.props.tableUpdate();
       this.addExpense();
-      } 
+      // } 
       
-    ) 
+    // ) 
          
     }
     // e.target.reset();
@@ -136,13 +141,16 @@ class EditExpenses extends Component {
               <td className="blankColumn"></td>
               <td><select ref="subcategory" name="subcategory">{expSubcategory}</select></td>
               <td className="blankColumn"></td>
-              <td><input type="text" ref="amount" name="amount" /></td>
+              <td><input onChange={this.handleChange.bind(this)} type="text" ref="amount" name="amount" /></td>
             </tr>
             
           </tbody>
           </div>
           <input type="submit" value="Add Expense" />
         </form> 
+        <div className="pieChart">
+        <Chart2 chartData={this.props.chartData} />
+        </div>
       </div>
       
     );

@@ -8,8 +8,8 @@ var db = myDatabase.database;
 
 router.get('/', function(req, res, next) {
     // var category = req.params.category;
-    db.any(`SELECT userid, sum(expenses.amount) AS totalExpense FROM expenses GROUP BY userid`).then(function (expTotal) {
-        res.json(expTotal[0]["totalexpense"]);  // using expTotal[0]["totalexpense"] to get to the expense only
+    db.any(`SELECT userid, sum(income.amount) AS totalIncome FROM income GROUP BY userid`).then(function (incTotal) {
+        res.json(incTotal[0]["totalincome"]);  // using expTotal[0]["totalexpense"] to get to the expense only
         // console.log(summaryExpCategory);
     })
 });

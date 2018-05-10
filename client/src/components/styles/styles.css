@@ -15,7 +15,7 @@ select, input {
     text-align: center;
 }
 
-.spentAmount {
+.spentAmount, .incomeAmount {
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -30,6 +30,12 @@ th {
 /* td {
     border: 1pt solid black;
 } */
+
+.colspacing {
+    width: 30px;
+    text-align: right;
+    padding-right: 5px;
+}
 
 .balance {
     font-size: 20px;

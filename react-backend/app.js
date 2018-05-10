@@ -9,8 +9,10 @@ var usersRouter = require('./routes/users');
 var addExpenseRouter = require('./routes/addExpense');
 var expenseCategories = require('./routes/expenseCategories');
 var summaryExpCategory = require('./routes/summaryExpCategory');
+var summaryIncome = require('./routes/summaryIncome');
 var addIncomeRouter = require('./routes/addIncome');
 var expTotalRouter = require('./routes/expTotal');
+var incomeTotalRouter = require('./routes/incomeTotal');
 
 var app = express();
 
@@ -30,8 +32,10 @@ app.use('/addExpense', addExpenseRouter);
 app.use('/expenseCategories', expenseCategories);
 app.use(require('./routes/expenseSubcategories'))
 app.use('/summaryExpCategory', summaryExpCategory);
+app.use('/summaryIncome', summaryIncome);
 app.use('/addIncome', addIncomeRouter);
 app.use('/expTotal', expTotalRouter);
+app.use('/incomeTotal', incomeTotalRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

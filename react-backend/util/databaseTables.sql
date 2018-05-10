@@ -38,7 +38,13 @@ GROUP BY category
 ORDER BY category
 
 -- Gets sum of all expenses
-SELECT sum(expenses.amount) AS totalexpenses FROM expenses
+SELECT userid, sum(expenses.amount) AS totalExpense FROM expenses
+GROUP BY userid
+
+-- Gets sum of all income
+SELECT userid, sum(income.amount) AS totalIncome 
+FROM income 
+GROUP BY userid
 
 -- Calculates user balance based on start balance and expenses
 SELECT userinfo.username, (userinfo.balance - SUM(expenses.amount)) AS balance FROM expenses
