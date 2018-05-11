@@ -189,7 +189,7 @@ class App extends Component {
           .then(summary => this.setState({summaryIncome:summary}));
         if (i === 60) {
           update = false;
-          this.getChartData();
+          // this.getChartData();
           // Should update the chart after clicking add expense button but does not work
         }
         else {

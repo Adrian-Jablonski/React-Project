@@ -11,10 +11,10 @@ class SummaryCategory extends Component {
         var labelList = [];
         var dataList = [];
         let summaryRow = this.props.summaryExpCategories.map(data =>{
-            i += 1;
-            var expTableRows = "expTableRow" + i;
             labelList[i] = data["category"]
             dataList[i] = parseFloat(data["total"]).toFixed(2);
+            i += 1;
+            var expTableRows = "expTableRow" + i;
             console.log("map function : ", labelList);
             console.log(dataList);
             return (
@@ -61,7 +61,7 @@ class SummaryCategory extends Component {
                             </tbody>
                         </Col>
                         <Col xs={8}>
-                            <div className="chart">
+                            <div className="chart pieChart">
                                 <Pie
                                     data={chartData}
                                     
