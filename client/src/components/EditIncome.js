@@ -82,12 +82,12 @@ class EditIncome extends Component {
             </td>
             <td className="blankColumn"></td>
             <td><input type="text" ref="amount" name="amount" /></td>
+            <td className="blankColumn"></td>
+            <td><input type="submit" value="Add Income" /></td>
           </tr>
           
         </tbody>
-
         </div>
-          <input type="submit" value="Add Income" />
         </form> 
       </div>
       

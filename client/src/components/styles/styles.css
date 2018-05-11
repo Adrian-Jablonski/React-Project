@@ -1,3 +1,13 @@
+body {
+    background-color: #c4d7f2;
+    color: #061826;
+}
+
+/* select {
+    height: 50px;
+    width: 200px;
+} */
+
 .expenseLabel {
     margin-bottom: 10px;
 }
@@ -16,9 +26,13 @@ select, input {
 }
 
 .spentAmount, .incomeAmount {
-    text-align: center;
-    padding-left: 5px;
+    text-align: right;
     padding-right: 5px;
+}
+
+.dollarSignCol {
+    width: 40px;
+    text-align: right;
 }
 
 th {
@@ -27,15 +41,15 @@ th {
     color: white;
 }
 
-/* td {
-    border: 1pt solid black;
-} */
+td {
+    font-size: 18px;
+}
 
 .summaryHeading {
     border-bottom: 1px solid black;
 }
 
-.financialSummary {
+.financialSummary, .incomeSection, .expenseSection{
     border-bottom: 1px solid black;
     width: 90%;
 }
@@ -75,12 +89,18 @@ th {
 .pieChart {
     width: 80%;
     height: 80%;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 400px;
+    max-height: 400px;
+    color: white;
 }
 
 .summaryChart {
     width: 300px;
+}
+
+.expenseTable, .incomeTable {
+    font-size: 25px;
+    font-weight: 900;
 }
 
 .expTableRow1 {

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Bar, Line, Pie} from 'react-chartjs-2';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 // import SummaryCategoryRow from './SummaryCategoryRow';
 // import axios from 'axios';
@@ -6,28 +8,78 @@ import React, { Component } from 'react';
 class SummaryCategory extends Component {
     render() {
         var i = 0;
+        var labelList = [];
+        var dataList = [];
         let summaryRow = this.props.summaryIncome.map(data =>{
+            labelList[i] = data["category"]
+            dataList[i] = parseFloat(data["total"]).toFixed(2);
             i += 1;
             var incTableRows = "expTableRow" + i;
+            var dataTotal = parseFloat(data.total).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             // console.log(data);
             return (
                 <tr className={incTableRows}>
                     <td>{i}</td>
                     <td>{data.category}</td>
-                    <td key={data.category} className="incomeAmount">$ {parseFloat(data.total).toFixed(2)}</td>
+                    <td className="dollarSignCol">$</td>
+                    <td key={data.category} className="incomeAmount">{dataTotal}</td>
                 </tr>
             ) 
         })
+        var chartData = {
+            labels: labelList,
+            datasets: [
+                {
+                    label: 'Income Summary',
+                    data: dataList,
+                    backgroundColor:[
+                        'rgba(55, 255, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 0, 0, 0.6)',
+                        'rgba(40, 260, 23, 0.6)',
+                        'rgba(255, 260, 64, 0.6)',
+                        'rgba(15, 15, 15, 0.6)',
+                        'rgba(255, 100, 64, 0.6)',
+                        'rgba(0, 0, 255, 0.6)',
+                    ]
+                }
+            ]
+        }
         
         return (
-            <tbody className="incomeTable">
-                <tr>
-                    <th className="numb">#</th>
-                    <th>Category</th>
-                    <th className="incomeAmount">Income</th>
-                </tr>
-                {summaryRow}
-            </tbody>
+            <div>
+                <Grid>
+                    <Row className ="show-grid">
+                        <Col xs={4}>
+                            <tbody className="incomeTable">
+                                <tr>
+                                    <th className="numb">#</th>
+                                    <th>Income Type</th>
+                                    <th className="dollarSignCol"></th>
+                                    <th className="incomeAmount">Amount</th>
+                                </tr>
+                                {summaryRow}
+                            </tbody>
+                        </Col>
+                        <Col xs={8}>
+                            <div className="chart pieChart">
+                                <Pie
+                                    data={chartData}
+                                    
+                                    width= {200}
+                                    height={150}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </Col>
+                    </Row>
+                </Grid>
+            </div>
         )
     }
 }

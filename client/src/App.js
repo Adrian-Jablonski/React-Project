@@ -211,30 +211,24 @@ class App extends Component {
           <TotalSummary expTotal={this.state.expTotal} incomeTotal={this.state.incomeTotal}/>
           <br />
         </div>
+          <div className="incomeSection">
+          <EditIncome addIncome={this.addIncome.bind(this)} tableUpdate={this.tableUpdate.bind(this)}/>
+          <br />
+          <SummaryIncome summaryIncome={this.state.summaryIncome} />
+          <br />
+        </div>
 
-        <EditIncome addIncome={this.addIncome.bind(this)} tableUpdate={this.tableUpdate.bind(this)}/>
-        <SummaryIncome summaryIncome={this.state.summaryIncome} />
+        <div className="expenseSection">
+          <EditExpenses lessExpense={this.lessExpense.bind(this)} 
+          categoryChange={this.categoryChange.bind(this)} 
+          tableUpdate={this.tableUpdate.bind(this)}
+          expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} summaryExpCategories={this.state.summaryExpCategories}
+          chartData={this.state.chartData}/> 
+          <br />
+          <SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
 
-        <EditExpenses lessExpense={this.lessExpense.bind(this)} 
-        categoryChange={this.categoryChange.bind(this)} 
-        tableUpdate={this.tableUpdate.bind(this)}
-         expCategories={this.state.expCategories} expSubcategories={this.state.expSubcategories} summaryExpCategories={this.state.summaryExpCategories}
-         chartData={this.state.chartData}/>    
-         <Grid>
-          <Row className ="show-grid">
-
-          <Col xs={5}><SummaryCategory summaryExpCategories={this.state.summaryExpCategories} />
-          </Col>
-
-          <Col xs={7}>
-            {/* <div className="pieChart">
-            <Chart2 chartData={this.state.chartData} /></div> */}
-          </Col>
-          </Row>
-         </Grid>
-
-         <Chart chartData={this.state.chartData} />
-         
+         {/* <Chart chartData={this.state.chartData} /> */}
+        </div> 
       </div>
     );
   }

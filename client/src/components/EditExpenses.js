@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './styles/styles.css';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col} from 'react-bootstrap';
 import InputMask from 'react-input-mask';
 import SummaryCategory from './SummaryCategory';
 import Chart2 from './Chart2';
@@ -134,7 +134,7 @@ class EditExpenses extends Component {
                     <option key="cash" value="Cash">Cash</option>
                     <option key="creditcard" value="Credit Card">Credit Card</option>
                     <option key="check" value="Check">Check</option>
-                  </select></td>
+              </select></td>
             </tr>
             <tr>
               <td></td>
@@ -142,15 +142,16 @@ class EditExpenses extends Component {
               <td><select ref="subcategory" name="subcategory">{expSubcategory}</select></td>
               <td className="blankColumn"></td>
               <td><input onChange={this.handleChange.bind(this)} type="text" ref="amount" name="amount" /></td>
+              <td className="blankColumn"></td>
+              <td><input type="submit" value="Add Expense" /></td>
             </tr>
             
           </tbody>
           </div>
-          <input type="submit" value="Add Expense" />
         </form> 
-        <div className="pieChart">
-        {/* <Chart2 chartData={this.props.chartData} /> */}
-        </div>
+        {/* <div className="pieChart">
+        {/* <Chart2 chartData={this.props.chartData} />
+        </div> */}
       </div>
       
     );

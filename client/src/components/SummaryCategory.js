@@ -15,13 +15,15 @@ class SummaryCategory extends Component {
             dataList[i] = parseFloat(data["total"]).toFixed(2);
             i += 1;
             var expTableRows = "expTableRow" + i;
-            console.log("map function : ", labelList);
-            console.log(dataList);
+            var dataTotal = parseFloat(data.total).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            // console.log(data);
+            
             return (
                 <tr className={expTableRows}>
                     <td>{i}</td>
                     <td>{data.category}</td>
-                    <td key={data.category} className="spentAmount">$ {parseFloat(data.total).toFixed(2)}</td>
+                    <td className="dollarSignCol">$</td>
+                    <td key={data.category} className="spentAmount"> {dataTotal}</td>
                 </tr>
             ) 
         })
@@ -55,6 +57,7 @@ class SummaryCategory extends Component {
                                 <tr>
                                     <th className="numb">#</th>
                                     <th>Category</th>
+                                    <th className="dollarSignCol"></th>
                                     <th className="spentAmount">Spent</th>
                                 </tr>
                                 {summaryRow}
