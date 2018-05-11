@@ -149,7 +149,7 @@ class EditExpenses extends Component {
           <input type="submit" value="Add Expense" />
         </form> 
         <div className="pieChart">
-        <Chart2 chartData={this.props.chartData} />
+        {/* <Chart2 chartData={this.props.chartData} /> */}
         </div>
       </div>
       

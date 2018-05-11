@@ -206,9 +206,11 @@ class App extends Component {
     return (
       <div className="content">
         {/* <Users users={this.state.users} /> */}
-        <h1>Summary</h1>
-        <TotalSummary expTotal={this.state.expTotal} incomeTotal={this.state.incomeTotal}/>
-        <br />
+        <div className="financialSummary">
+          <h1 className="summaryHeading">Financial Summary</h1>
+          <TotalSummary expTotal={this.state.expTotal} incomeTotal={this.state.incomeTotal}/>
+          <br />
+        </div>
 
         <EditIncome addIncome={this.addIncome.bind(this)} tableUpdate={this.tableUpdate.bind(this)}/>
         <SummaryIncome summaryIncome={this.state.summaryIncome} />

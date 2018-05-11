@@ -15,8 +15,6 @@ class Chart extends Component {
         console.log("Chart test", this.state.chartData2)
     }
 
-    
-    
     render() {
         return(
             <div className="chart">
